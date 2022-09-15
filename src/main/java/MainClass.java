@@ -1,8 +1,7 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+//import sun.security.mscapi.CPublicKey;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -81,13 +80,113 @@ public class MainClass {
 
         //part3
 
+/*
         driver.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0");
         driver.findElement(By.xpath("//input[@class='vector-search-box-input']")).sendKeys("Selenium webdriver");
         driver.findElement(By.xpath("//input[@id='searchButton']")).click();
 
 
+        driver.findElement(By.xpath("//div[@id=\"searchText\"]/input")).getAttribute("value");
+        System.out.println(driver.findElement(By.xpath("//div[@id=\"searchText\"]/input")).getAttribute("value"));
         driver.findElement(By.xpath("//div[@id=\"searchText\"]/input")).clear();
 //lesson 44 (5.30)
+*/
+
+
+        //part4
+
+/*        driver.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0%22)");
+        WebElement link = driver.findElement(By.xpath("//*[text()='найти упоминания']/../a"));
+        WebElement link2 = driver.findElement(By.xpath("//*[@id='n-currentevents']/a"));
+        System.out.println(link.getText());
+        System.out.println(link2.getText());
+        link.click();
+        */
+
+
+
+        //part5 checkboxes and radio buttons / lesson 46
+
+//        driver.get("https://market.yandex.ru");
+//        driver.findElement(By.xpath("//span[@class='_3z8Gf' and text()='Бытовая техника']/..")).click();
+//        driver.findElement(By.xpath("//*[text()='Стиральные и сушильные машины']")).click();
+//        driver.findElement(By.xpath("//div[@class='q9WpB']//a[text()='Стиральные машины']")).click();
+
+
+        driver.get("https://catalog.onliner.by/");
+//        driver.get("https://catalog.onliner.by/mobile");
+        driver.findElement(By.xpath("//span[@class='catalog-navigation-classifier__item-title-wrapper' and text()='Электроника']")).click();
+        driver.findElement(By.xpath("//div[contains(text(),'Мобильные телефоны и')]")).click();
+        driver.findElement(By.xpath("//div[@class='catalog-navigation-list__aside-item catalog-navigation-list__aside-item_active']//div[@class='catalog-navigation-list__dropdown']//div[@class='catalog-navigation-list__dropdown-list']//a[@class='catalog-navigation-list__dropdown-item']//span[@class='catalog-navigation-list__dropdown-data']//span[@class='catalog-navigation-list__dropdown-title'][contains(text(),'Смартфоны')]")).click();
+
+//        driver.findElement(By.xpath("//*[text()='кнопочный телефон']")).click();
+//        driver.findElement(By.xpath("//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='Xiaomi']/../span[@class='i-checkbox']")).click();
+//        driver.findElement(By.xpath("//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='Apple']/..")).click();
+//        driver.findElement(By.xpath("//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='Samsung']")).click();
+
+//        driver.findElement(By.xpath("//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/span")).click();
+
+//        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/span";
+        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/input"; //invisible
+//        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span";
+//        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/..";
+//        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../..";
+
+//To check Element Present:
+        if(driver.findElement(By.xpath(sPath))!= null){
+            System.out.println("Element is Present");
+        }else{
+            System.out.println("Element is Absent");
+        }
+
+//To check Visible:
+        if( driver.findElement(By.xpath(sPath)).isDisplayed()){
+            System.out.println("Element is Visible (is Displayed)");
+        }else{
+            System.out.println("Element is InVisible");
+        }
+//To check Enable:
+        if( driver.findElement(By.xpath(sPath)).isEnabled()){
+            System.out.println("Element is Enable");
+        }else{
+            System.out.println("Element is Disabled");
+        }
+
+       WebElement linkxi = driver.findElement(By.xpath(sPath));
+        /* Actions actions = new Actions(driver);
+
+        actions.moveToElement(linkxi).click().perform();
+        */
+
+
+        //Creating the JavascriptExecutor interface object by Type casting
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        // Click using JavascriptExecutor
+        js.executeScript("arguments[0].click();", linkxi);
+
+//
+
+
+
+
+
+/*
+
+        driver.get("https://market.yandex.by/catalog--stiralnye-mashiny/18031204/list?hid=90566&local-offers-first=0");
+        driver.findElement(By.xpath("//div[@class='PndfQ']//*[text()='Показать всё']")).click();
+        driver.findElement(By.xpath("//*[@class='_1ZDAA' and text()='LG']")).click();
+        //проверяем выделен или нет
+        System.out.println(driver.findElement(By.xpath("//*[@class='_1ZDAA' and text()='LG']/../../input")).isSelected());
+
+        public static void selectRadioButton(String Object name;){
+            String rbXpath = "//*[@class='_1ZDAA' and text()='LG']/../../input";
+            if (!(driver.findElement(By.xpath("//*[@class='_1ZDAA' and text()='LG']/../../input")).isSelected())) {
+
+                driver.findElement(By.xpath("//*[@class='_1ZDAA' and text()='LG']")).click();
+            }
+        }
+*/
+
 
 //        driver.quit();
 
