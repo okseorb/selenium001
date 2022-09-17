@@ -8,9 +8,12 @@ import java.util.concurrent.TimeUnit;
 
 public class MainClass {
 
+    static WebDriver driver;
+
+
     public static void main(String[] args) {
         System.setProperty("webdriver.gecko.driver", "c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\geckodriver.exe");
-        WebDriver driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //задержка для ожидания элемента
 
@@ -127,7 +130,8 @@ public class MainClass {
 //        driver.findElement(By.xpath("//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/span")).click();
 
 //        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/span";
-        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/input"; //invisible
+//        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span/input"; //invisible
+        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='Realme']/../span/input"; //invisible
 //        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../span";
 //        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/..";
 //        String sPath ="//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='HONOR']/../..";
@@ -159,10 +163,34 @@ public class MainClass {
         */
 
 
+        if(linkxi.isSelected()){
+            System.out.println("Element is Selected!!!");
+        }else System.out.println("Element is not selected.");
+
+        System.out.println("sPath = " + sPath);
         //Creating the JavascriptExecutor interface object by Type casting
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        js.executeScript("arguments[0].click();", linkxi);
+
+        javaClicker(sPath);
+
+
+        selectCheckBox("Apple");
+        selectCheckBox("Xiaomi");
+        selectCheckBox("HONOR");
+
+
+/*
+
         // Click using JavascriptExecutor
         js.executeScript("arguments[0].click();", linkxi);
+
+        if(linkxi.isSelected()){
+            System.out.println("Element is Selected!!!");
+        }else System.out.println("Element is not selected.");
+*/
+
+
 
 //
 
@@ -192,5 +220,26 @@ public class MainClass {
 
 
 
+    }
+
+
+    public static void javaClicker(String localXpath){
+        WebElement element = driver.findElement(By.xpath(localXpath));
+        //Creating the JavascriptExecutor interface object by Type casting
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    public static void selectCheckBox(String name){
+        String rbXpath = "//ul[@class='schema-filter__list']//label[@class='schema-filter__checkbox-item']/span[text()='%s']/../span/input";
+        String localXpath;
+        localXpath = String.format(rbXpath, name);
+        if(!(driver.findElement(By.xpath(localXpath)).isSelected())){
+            System.out.println("Element " + name + " is not Selected. We will select it!");
+            System.out.println(localXpath);
+
+            javaClicker(localXpath);
+
+        }else System.out.println("Element " + name + " is selected!!!");
     }
 }
