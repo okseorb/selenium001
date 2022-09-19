@@ -32,7 +32,7 @@ public class MarshalClass {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //      ...
-        wait.until(ExpectedConditions.stalenessOf(elements.get(5)));
+//        wait.until(ExpectedConditions.stalenessOf(elements.get(5)));
 
 
 
