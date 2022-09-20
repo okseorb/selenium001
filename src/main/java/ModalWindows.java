@@ -9,8 +9,9 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.alertIsPresent;
 
 public class ModalWindows {
 
-    public static void main(String[] args) throws InterruptedException {
 
+    public static void main(String[] args) throws InterruptedException {
+/*
         System.setProperty("webdriver.chrome.driver","c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\103\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
@@ -76,6 +77,7 @@ public class ModalWindows {
 
 
 
+*/
 
 
 
