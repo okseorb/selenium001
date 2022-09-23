@@ -14,15 +14,44 @@ public class HiddenInputs {
 
         System.setProperty("webdriver.chrome.driver","c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\103\\chromedriver.exe");
 
+
+
         // If the selector is hidden and you can't click it, than you need to change Selector attributes and then click to it
         //showHidden();
 
+        // Assert (проверки) - (англ. "утверждение") -  e.g.: check the title for identity to text "Practice Page"
+        //testAsserts();
 
-        testAsserts();
+        // Паттерн проектирования Page Object Структура классов и методов (теория) |23.09.2022
+/*
 
+        // Создаем экземпляр класса LoginPage
+        LoginPage lp = new LoginPage();
+
+        // Вызываем метод login класса LoginPage
+        lp.login("admin", "12345678");
+*/
+
+
+        // Паттерн проектирования Page Object Структура классов и методов (практика) |23.09.2022
+        doLogin();
 
 
     }
+
+    private static void doLogin() {
+
+        try {
+            // Создаем экземпляр класса LoginPage
+            LoginPage testLp = new LoginPage();
+
+            // Вызываем метод testLogin класса LoginPage
+            testLp.testLogin("administrator", "1234567890-QWERTY", "https://www.lezhenkin.ru/examples/php/oop-php/sozdanie-formy-registraczii-i-avtorizaczii-na-php/");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private static void testAsserts() {
 
