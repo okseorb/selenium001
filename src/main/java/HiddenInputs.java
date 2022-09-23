@@ -39,7 +39,7 @@ public class HiddenInputs {
 
             String title = driver.getTitle();
 
-            // Assert (проверки) - (англ. "утверждение") - check the title for identity to text "Practice Page"
+            // Assert (проверки) - (англ. "утверждение") -  check the title for identity to text "Practice Page"
             Assert.assertEquals(title, "Practice Page");
             Thread.sleep(2000);
 
