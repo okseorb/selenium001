@@ -2,9 +2,56 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/usr/IdeaProjects/test-selen">
+    <test name="First test">
+
+        <!--        Variant 1 -->
+        <!--
         <classes>
-            <class name="TestNG1"></class>
+            <class name="smokeTestNG.TestNG1"></class>
         </classes>
+        -->
+
+        <!--        Variant 2 - запуск всех тестов из пакета -->
+        <!--
+                <packages>
+                    <package name="smokeTestNG"></package>
+                </packages>
+                -->
     </test>
+
+    <!--        Variant 3 - запуск разных тестов в разных классах по отдельности -->
+    <!--
+        <test name="TestFor1">
+            <classes>
+                <class name="smokeTestNG.TestNG1"></class>
+            </classes>
+        </test>
+
+        <test name="TestFor2">
+            <classes>
+                <class name="smokeTestNG.TestNG2"></class>
+            </classes>
+        </test>
+    -->
+
+    <!--        Variant 3 запуск групп тестов -->
+
+    <test name="Group test">
+
+        <groups>
+            <run>
+<!--            Указываем группу тестов, которую надо запустить-->
+                <include name="regress"></include>
+            </run>
+        </groups>
+
+<!--    Классы, в которых ищем группы-->
+        <classes>
+            <class name="smokeTestNG.TestNG1"></class>
+            <class name="smokeTestNG.TestNG2"></class>
+        </classes>
+
+    </test>
+
+
 </suite>
