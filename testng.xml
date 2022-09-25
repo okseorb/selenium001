@@ -35,23 +35,54 @@
     -->
 
     <!--        Variant 3 запуск групп тестов -->
+    <!--
+        <test name="Group test">
+    
+            <groups>
+                <run>
+           Указываем группу тестов, которую надо запустить
+                    <include name="regress"></include>
+                </run>
+            </groups>
+    
+  Классы, в которых ищем группы
+            <classes>
+                <class name="smokeTestNG.TestNG1"></class>
+                <class name="smokeTestNG.TestNG2"></class>
+            </classes>
+    
+        </test>
+    -->
 
-    <test name="Group test">
 
+
+<!--    Передача параметров -->
+
+<!--
+    <test name="TestWithParameters">
+        <parameter name="db" value="parameter's value"></parameter>
+        <classes>
+            <class name="smokeTestNG.TestNG1"></class>
+        </classes>
+    </test>
+-->
+
+
+    <!--    Передача параметров с помощью провайдера -->
+
+    <test name="TestParametersWithDataProvider">
         <groups>
             <run>
-<!--            Указываем группу тестов, которую надо запустить-->
                 <include name="regress"></include>
             </run>
         </groups>
 
-<!--    Классы, в которых ищем группы-->
+        <parameter name="db" value=""></parameter>
         <classes>
-            <class name="smokeTestNG.TestNG1"></class>
             <class name="smokeTestNG.TestNG2"></class>
         </classes>
-
     </test>
 
+    
 
 </suite>
