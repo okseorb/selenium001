@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="All Test Suite">
     <test name="First test">
@@ -80,6 +80,7 @@
         <parameter name="db" value=""></parameter>
         <classes>
             <class name="smokeTestNG.TestNG2"></class>
+            <class name="smokeTestNG.TestNG1"></class>
         </classes>
     </test>
 
