@@ -21,13 +21,12 @@ public class RubenMainClass {
 
 
 
-        // ComboBoxes - 47 - into RubenComboBox Class
+        // ------------ ComboBoxes - 47 - into RubenComboBox Class ---------------
 
 //        RubenComboBox.TestComboOneClick(driver);
 //        RubenComboBox.TestComboTwoClick(driver);
 
 /*
-
         RubenComboBox.TestComboBoxStart(driver);
 
         RubenComboBox.TestComboThreeClick(driver, "Ширина профиля", "100");
@@ -38,7 +37,9 @@ public class RubenMainClass {
 */
 
 
+        // ------------ FindElements - 48 - into RubenFindElements Class ---------------
 
+        RubenFindElements.findCheckBoxes(driver);
 
     }
 

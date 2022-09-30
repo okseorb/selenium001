@@ -6,17 +6,6 @@ import java.time.Duration;
 
 public class RubenComboBox {
     WebDriver driver = RubenMainClass.driver;
-    /*
-    this.driver = driver;
-
-    System.setProperty("webdriver.gecko.driver", "c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\geckodriver.exe");
-    driver = new FirefoxDriver();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); //задержка для ожидания элемента
-
-        driver.manage().window().maximize();
-        */
-
 
 
     public static void TestComboBoxStart(WebDriver driver){
