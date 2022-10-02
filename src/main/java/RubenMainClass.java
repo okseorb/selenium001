@@ -43,11 +43,19 @@ public class RubenMainClass {
 
 
         // ------------ TABLES - 49 - into RubenTables49 Class ---------------
+
         driver.get("https://www.w3schools.com/html/html_tables.asp");
         WebElement tableElement = driver.findElement(By.xpath("//table[@class='ws-table-all']"));
         RubenTables49 table = new RubenTables49(tableElement, driver);
         System.out.println("Rows numbers is: " + table.getRows().size());
+        System.out.println("Headings numbers is: " + table.getHeadings().size());
+
+        System.out.println("---------- by Row and Column Number:");
         System.out.println("Rows is 2, column is 3 value: " + table.getValueFromCell(2,3));
+        System.out.println("Rows is 4, column is 1 value: " + table.getValueFromCell(4,1));
+        System.out.println("---------- by Header:");
+        System.out.println("Rows is 3, column's header is \"Contact\": " + table.getValueFromCell(3,"Contact"));
+        System.out.println("Rows is 5, column's header is \"Country\": " + table.getValueFromCell(5,"Country"));
 
         driver.quit();
 
