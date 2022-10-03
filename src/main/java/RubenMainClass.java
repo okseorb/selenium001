@@ -3,10 +3,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class RubenMainClass {
     public static WebDriver driver;
@@ -147,26 +152,38 @@ public class RubenMainClass {
 //        if (driverG.findElements(By.xpath("//a[@class='Log in']")).size() > 0) System.out.println("Element is exist!");
 
 
-
         // ------------ Class KEYS - 58 - into RubenMainClass ---------------
 
         driverG.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0");
         WebElement elSearch = driverG.findElement(By.xpath("//input[@class='vector-search-box-input']"));
         elSearch.sendKeys("Text for ");
-        elSearch.sendKeys(Keys.chord(Keys.SHIFT,"test"));
+        elSearch.sendKeys(Keys.chord(Keys.SHIFT, "test"));
         elSearch.sendKeys(Keys.ENTER);
         WebElement elSearchPage2 = driverG.findElement(By.xpath("//div[@id='searchText']//input[@type='search']"));
-        String selectAll = Keys.chord(Keys.CONTROL,"a");
-        String cut = Keys.chord(Keys.CONTROL,"x");
-        String paste = Keys.chord(Keys.CONTROL,"v");
+        String selectAll = Keys.chord(Keys.CONTROL, "a");
+        String cut = Keys.chord(Keys.CONTROL, "x");
+        String paste = Keys.chord(Keys.CONTROL, "v");
         elSearchPage2.sendKeys(selectAll);
         elSearchPage2.sendKeys(cut);
         elSearchPage2.sendKeys(paste);
         elSearchPage2.sendKeys(paste);
 
 
+        // ------------ Screenshots - 59 - into RubenMainClass ---------------
 
+        Date dateNow = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd_hh.mm.ss");
+        String fileName = "screenshot_" + format.format(dateNow) + ".png";
+        TakesScreenshot screenshot1 = (TakesScreenshot) driverG;
+        File scrFile = screenshot1.getScreenshotAs(OutputType.FILE);
+        File destFile = new File("D:\\Pr-Selenium-screenshots\\" + fileName);
+        try {
+            FileHandler.copy(scrFile, destFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+        driverG.quit();
 
 
 
