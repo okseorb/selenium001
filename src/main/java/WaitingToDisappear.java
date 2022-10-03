@@ -14,6 +14,8 @@ import java.util.Set;
 
 public class WaitingToDisappear {
 
+    // Ожидание исчезновения - полезно при обновлении страницы (например пагинации) с помощью JS,
+    // когда HTML не меняется, а меняются только значения
     public static void main(String[] args) {
 
         System.setProperty("webdriver.chrome.driver","c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\103\\chromedriver.exe");
@@ -22,7 +24,7 @@ public class WaitingToDisappear {
         driver.manage().window().maximize();
         // Неявное ожидание (Implicit Wait)
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
+        //Явное ожидание
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 
