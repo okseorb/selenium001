@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,7 +29,7 @@ public class RubenMainClass {
         driver.manage().window().maximize();
 */
 
-        System.setProperty("webdriver.chrome.driver","c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\105\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\105\\chromedriver.exe");
         driverG = new ChromeDriver();
         //задержка для ожидания элемента
         driverG.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -77,6 +78,7 @@ public class RubenMainClass {
 
 
         // ------------ Class ACTIONS - Сложные действия - 51 - into RubenMainClass ---------------
+/*
 
         driverG.get("https://www.ebay.com/");
         WebElement linkFashion = driverG.findElement(By.xpath("//li[@class='hl-cat-nav__js-tab']//a[text()='Мода']"));
@@ -97,6 +99,48 @@ public class RubenMainClass {
         Action act = actions.clickAndHold(linkElectronics).moveToElement(searchField).release().build();
         act.perform();
         actions.moveToElement(searchField).click().sendKeys("Мокасины").build().perform();
+*/
+
+
+        // ------------ JavaScript and Alerts - switchTo - 52-53 - into RubenMainClass ---------------
+/*
+
+        driverG.get("https://google.com/");
+        JavascriptExecutor js = (JavascriptExecutor) driverG;
+        js.executeScript("confirm('Are you sure?');");
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        driverG.switchTo().alert().accept();
+//        driverG.switchTo().alert().dismiss();
+//        driverG.switchTo().alert().sendKeys("test text");
+*/
+
+
+        // ------------ Switching between multiple windows - 54 - into RubenMainClass ---------------
+
+        driverG.get("https://www.oracle.com/java/technologies/javase/early-access-downloads.html");
+        //Запоминаем сразу текущее окно в переменную
+        String windowHandle1 = driverG.getWindowHandle();
+
+        driverG.findElement(By.xpath("//a[text()='OpenJDK Wiki for Project Loom']")).click();
+
+        // If the link opens in a new window, then you need to switch to it
+        // Looking for the last window
+        for (String windowHandle : driverG.getWindowHandles()){
+            driverG.switchTo().window(windowHandle);
+        }
+        // Works with a new window
+        driverG.findElement(By.xpath("//span[@class='confluence-embedded-file-wrapper']")).click();
+        String windowHandle2 = driverG.getWindowHandle();
+        // Switch to the first window
+        driverG.switchTo().window(windowHandle1);
+        driverG.findElement(By.xpath("//a[text()='Project Jextract']")).click();
+
 
 
 
