@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
@@ -122,6 +119,7 @@ public class RubenMainClass {
 
 
         // ------------ Switching between multiple windows - 54 - into RubenMainClass ---------------
+/*
 
         driverG.get("https://www.oracle.com/java/technologies/javase/early-access-downloads.html");
         //Запоминаем сразу текущее окно в переменную
@@ -140,6 +138,33 @@ public class RubenMainClass {
         // Switch to the first window
         driverG.switchTo().window(windowHandle1);
         driverG.findElement(By.xpath("//a[text()='Project Jextract']")).click();
+*/
+
+
+        // ------------ Check if the element exists - 57 - into RubenMainClass ---------------
+
+        // Get the List of elements and check it's size
+//        if (driverG.findElements(By.xpath("//a[@class='Log in']")).size() > 0) System.out.println("Element is exist!");
+
+
+
+        // ------------ Class KEYS - 58 - into RubenMainClass ---------------
+
+        driverG.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0");
+        WebElement elSearch = driverG.findElement(By.xpath("//input[@class='vector-search-box-input']"));
+        elSearch.sendKeys("Text for ");
+        elSearch.sendKeys(Keys.chord(Keys.SHIFT,"test"));
+        elSearch.sendKeys(Keys.ENTER);
+        WebElement elSearchPage2 = driverG.findElement(By.xpath("//div[@id='searchText']//input[@type='search']"));
+        String selectAll = Keys.chord(Keys.CONTROL,"a");
+        String cut = Keys.chord(Keys.CONTROL,"x");
+        String paste = Keys.chord(Keys.CONTROL,"v");
+        elSearchPage2.sendKeys(selectAll);
+        elSearchPage2.sendKeys(cut);
+        elSearchPage2.sendKeys(paste);
+        elSearchPage2.sendKeys(paste);
+
+
 
 
 
