@@ -1,5 +1,6 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +17,7 @@ import java.util.Date;
 public class RubenMainClass {
     public static WebDriver driver;
     public static WebDriver driverG;
+    public static WebDriver driverNoG;
 
 
     public static void main(String[] args) {
@@ -30,6 +32,7 @@ public class RubenMainClass {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 */
+/*
 
         System.setProperty("webdriver.chrome.driver", "c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\105\\chromedriver.exe");
         driverG = new ChromeDriver();
@@ -37,6 +40,7 @@ public class RubenMainClass {
         driverG.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driverG.manage().window().maximize();
         WebDriverWait wait = new WebDriverWait(driverG, Duration.ofSeconds(5));
+*/
 
 
         // ------------ ComboBoxes - 47 - into RubenComboBox Class ---------------
@@ -153,6 +157,7 @@ public class RubenMainClass {
 
 
         // ------------ Class KEYS - 58 - into RubenMainClass ---------------
+/*
 
         driverG.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0");
         WebElement elSearch = driverG.findElement(By.xpath("//input[@class='vector-search-box-input']"));
@@ -167,9 +172,11 @@ public class RubenMainClass {
         elSearchPage2.sendKeys(cut);
         elSearchPage2.sendKeys(paste);
         elSearchPage2.sendKeys(paste);
+*/
 
 
         // ------------ Screenshots - 59 - into RubenMainClass ---------------
+/*
 
         Date dateNow = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy.mm.dd_hh.mm.ss");
@@ -184,9 +191,33 @@ public class RubenMainClass {
         }
 
         driverG.quit();
+*/
 
 
 
+        // ------------ Run a test without a visible Browser - 62 (comments) - into RubenMainClass ---------------
+
+        // Выполнение тестов без запуска браузера
+        System.out.println("Выполнение тестов без запуска браузера");
+        System.setProperty("webdriver.chrome.driver", "c:\\Users\\usr\\IdeaProjects\\test-selen\\drivers\\105\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driverNoG = new ChromeDriver(options);
+        //задержка для ожидания элемента
+        driverNoG.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driverNoG.manage().window().maximize();
+
+        // Далее код программы
+
+        driverNoG.get("https://ru.wikipedia.org/wiki/%D0%97%D0%B0%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F_%D1%81%D1%82%D1%80%D0%B0%D0%BD%D0%B8%D1%86%D0%B0");
+        WebElement elSearch = driverNoG.findElement(By.xpath("//input[@class='vector-search-box-input']"));
+        elSearch.sendKeys("Text for ");
+        elSearch.sendKeys(Keys.chord(Keys.SHIFT, "test"));
+        elSearch.sendKeys(Keys.ENTER);
+        WebElement elSearchPage2 = driverNoG.findElement(By.xpath("//div[@id='searchText']//input[@type='search']"));
+        System.out.println(elSearchPage2.getAttribute("title"));
+        System.out.println(elSearchPage2.getAttribute("value"));
+        driverNoG.quit();
 
 
     }
